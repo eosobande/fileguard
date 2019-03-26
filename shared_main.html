@@ -1,0 +1,154 @@
+{% extends 'template.html' %}
+{% block main %}
+
+    {% if user %}
+
+   		<h2 id="welcome">Hello {{ user.email() }}!</h2>
+
+      <p><b>Current working directory:</b></p>
+      
+      <p id="cwd">
+      
+       	{% for dir in path %}
+       		<a class="path" href="/shared/{{dir['url']}}">{{dir['name']}}</a>
+       		{% if not loop.index == path|length %}
+       			<strong>&#9658;</strong>
+       		{% endif %}
+       	{% endfor %}
+       	
+      </p>
+	   
+			{% if error %}
+			  <p class="error">{{error}}</p>
+			{% elif success %}
+			  <p class="success">Directory created successfully</p>
+			{% endif %}
+			
+		{% if writable %}
+
+		<form style="padding: 0; margin: 0; background: none" method="post" action= "/shared{{ cur_dir }}">
+			
+			<p id="menu">
+				{% if path|length > 1 %}
+					<a href="/shared/{{ path[path|length - 2].url }}" title="go up one level">../</a>
+				{% endif %}
+				<input type="submit" value="Delete Selected Items" name="button" />
+				<select name="destination">
+		      		<option value="r">Select destination folder</option>
+		      		{% for d in all_dirs %}
+		      			<option value="{{d}}">{{d}}</option>
+		      		{% endfor %}
+	      		</select><input type="submit" value="Move Selected Items" name="button" />
+			</p>
+		
+		{% else %}
+			
+			<p id="menu">
+				{% if path|length > 1 %}
+					<a href="/shared/{{ path[path|length - 2].url }}" title="go up one level">../</a>
+				{% endif %}
+			</p>
+			
+		{% endif %}
+      
+			<ul id="content">
+
+		       	{% for dir in cwd.folders %}
+
+					{% if not locks[loop.index-1] %}
+
+			        <li class="list">
+			        
+						{% if writable %}
+				        	<input class="check" name="folders" value="{{dir}}" type="checkbox" id="{{loop.index}}-folder" />
+				        	<label class="label" for="{{loop.index}}-folder"></label>
+						{% endif %}
+						
+			        	<div class="file">
+			        		<a href="{{ dir }}/" title="go into folder">
+				        		<img alt="" src="/css/folder.png">
+				          		<span>{{ dir }}</span>
+			          		</a>
+			          	</div>
+			          	
+			        </li>
+
+					{% endif %}
+
+		        {% endfor %}
+
+		        {% for file in files %}
+		          <li class="list">
+		          
+					{% if writable %}
+			        	<input class="check" name="files" value="{{loop.index-1}}" type="checkbox" id="{{loop.index}}-file" />
+			        	<label class="label" for="{{loop.index}}-file"></label>
+					{% endif %}
+					
+		        	<div class="file">
+			        	<a href="/download/{{ cwd.key.id() }}{{ cwd.files.index(file) }}" title="download">
+			        		<img alt="" src="/css/file.png">
+			          		<span>{{ file.name }}</span>
+			          	</a>
+			        </div>
+			        
+		          </li>	
+				{% endfor %}
+      
+			</ul>
+		
+		{% if writable %}
+		</form>
+		{% endif %}
+
+    {% else %}
+
+      <h3>The secure file storage solution that employees and IT admins trust.</h3>
+
+      <p id="smallBig">Login to access the application.</p>
+
+    {% endif %}
+
+
+{% endblock %}
+
+{% block left %}
+
+	{% if user %}	
+			
+		{% if writable %}
+
+      	<h2>Content</h2>
+
+			<form method="post" action= "/shared{{ cur_dir }}">
+	
+	      		<p>New folder</p>
+		        <input required id="name" placeholder="folder name" type="text" name="name" /><input type="submit" value="Create" name="button" />
+	
+			</form>
+	
+			<form method="post" action="{{ upload_url }}" enctype="multipart/form-data">
+	
+		     	<p>Upload file(s)</p>
+		     	<input type="hidden" name="dir" value="{{ cwd.key.id() }}"/>
+				<input required id="files" type="file" name="file" multiple /><input type="submit" value="Upload" name="button" />
+	
+			</form>
+
+		{% endif %}
+
+      	<h2>Folder properties</h2>
+
+  		<p>Folder name: {{cwd.name}}</p>
+
+  		<p>Contents: {{cwd.folders|length + cwd.files|length}} item(s)</p>
+  		<p>Location: /shared{{ cur_dir }}</p>
+  		<p>Created: {{cwd.created.strftime('%Y-%m-%d %H:%M:%S')}}</p>
+
+  		<p>Owner: {{owner}}</p>
+  		<p>Access: {{ 'Read and write files' if writable else 'Read files' }}</p>
+
+	{% endif %}
+
+{% endblock %}
+

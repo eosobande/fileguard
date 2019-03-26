@@ -1,0 +1,100 @@
+{% extends 'template.html' %}
+{% block main %}
+
+    {% if user %}
+
+    	<h2 id="welcome">Hello {{ user.email() }}!</h2>
+	   
+		{% if error %}
+		  <p class="error">{{error}}</p>
+		{% elif success %}
+		  <p class="success">Directory created successfully</p>
+		{% endif %}
+		
+		<p id="menu">
+			<a href="/dir/{{cur_dir}}">Go back to folder content</a>
+		</p>
+
+      	<h2>Folder properties</h2>
+
+  		<p>Folder name: {{cwd.name}}</p>
+
+  		<p>Contents: {{cwd.folders|length + cwd.files|length}} item(s)</p>
+  		<p>Location: {{cwd.key.id().replace(user.user_id(), '')}}</p>
+  		<p>Created: {{cwd.created.strftime('%Y-%m-%d %H:%M:%S')}}</p>
+
+  		<p>Owner: Me</p>
+  		<p>Owner access: Read and write files</p>
+
+		<form id="side1" method="post" action= "/properties/{{ cur_dir }}">
+		
+      	<h2>Shared Guest(s)</h2>
+      	<ul id="guests">
+	      	{% for g in guests %}
+	      	{% if g.key not in cwd.lock %}
+	      		<li>
+			        <span>{{ g.email }}</span>
+			        <input class="check" name="guests" value="{{ g.email }}" type="checkbox" id="{{loop.index}}-g" />
+					<label class="label" for="{{loop.index}}-g"></label>
+	      		</li>
+	      	{% endif %}
+	      	{% endfor%}
+      	</ul>
+	    <input type="submit" value="Unshare" name="button" />
+      	</form>
+
+		<form id="side2" method="post" action= "/properties/{{ cur_dir }}">
+		
+      	<h2>Locked Guest(s)</h2>
+      	<ul id="guests">
+	      	{% for g in guests %}
+	      	{% if g.key in cwd.lock %}
+	      		<li>
+			        <span>{{ g.email }}</span>
+			        <input class="check" name="guests" value="{{ g.email }}" type="checkbox" id="{{loop.index}}-g" />
+					<label class="label" for="{{loop.index}}-g"></label>
+	      		</li>
+	      	{% endif %}
+	      	{% endfor%}
+      	</ul>
+	    <input type="submit" value="Unlock" name="button" />
+      	</form>
+
+    {% else %}
+
+      <h3>The secure file storage solution that employees and IT admins trust.</h3>
+
+      <p id="smallBig">Login to access the application.</p>
+
+    {% endif %}
+
+
+{% endblock %}
+
+{% block left %}
+
+	{% if user %}
+
+      	<h2>Folder sharing</h2>
+
+		<form method="post" action= "/properties/{{ cur_dir }}">
+      		
+      		<p>Guest permission:</p>
+      		<select name="permission">
+	      		<option value="r">Read files</option>
+	      		<option value="rw">Read and write files</option>
+      		</select>
+
+      		<p>Guest:</p>
+	        <input required id="email" placeholder="guest email" type="email" name="email" /><input type="submit" value="Share" name="button" />
+
+		</form>
+
+	{% endif %}
+
+{% endblock %}
+
+{% block right %}
+
+{% endblock %}
+

@@ -1,0 +1,412 @@
+
+@import url('https://fonts.googleapis.com/css?family=Comfortaa');
+
+@font-face {
+  font-family: 'Flat Tyre';
+  src: url('Flat Tyre.ttf') format('truetype');
+}
+
+#side1, #side2 {
+	width: 30%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+#side1 {
+	
+  border-right: 1px solid #cfd0d266;
+  margin-right: 20px;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  color: #fbfbfb;
+  font-size: 12px;
+  padding: 0;
+  margin: 0;
+  background-color: #20262e;
+  background-image: url("swirl.png");
+  font-family: 'Comfortaa', cursive;
+}
+
+footer {
+  vertical-align: bottom;
+  background-color: #1c2128;
+  font-weight: bolder;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+section {
+  min-height: 530px;
+  width: 100%;
+}
+
+a {
+  color: #fbfbfb;
+  text-decoration: none;
+}
+
+header {
+  background-color: #1c2128;
+  padding: 20px 10px;
+}
+
+label {
+  font-weight: bold;
+  color: #ffffff;
+  
+}
+
+h1 {
+  display: inline-block;
+  margin: 0;
+  color: #fbfbfb;
+}
+
+h3 {
+  font-size: 54px;
+  color: #fbfbfb;
+  margin-top: 80px;
+}
+
+.links a::hover {
+	text-decoration: underline;
+}
+
+#smallBig {
+  font-size: 22px;
+}
+
+#left {
+  width: 20%;
+  display: inline-block;
+  padding: 10px;
+  vertical-align: top;
+}
+
+#left p {
+	word-break: break-word;
+}
+
+#left {
+  border-right: 1px solid #cfd0d266;
+}
+
+#left form {
+	padding-bottom: 10px;
+}
+
+#left form:first-child {
+	padding-top: 0;
+}
+
+#main {
+  width: 75%;
+  display: inline-block;
+  vertical-align: top;
+  padding: 10px;
+}
+
+input[type="text"], input[type="file"], input[type="email"], select {
+  background: #1c2128;
+  outline: none;
+  border: none;
+  color: #fbfbfb;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  padding: 10px;
+  width: 160px;
+}
+
+select {
+	width: auto;
+}
+
+#left select {
+	border-radius: 5px;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+	border: none;
+	background: none;
+	padding: none;
+  	color: #fbfbfb;
+}
+
+input[type="submit"] {
+  background-color: #fbfbfb;
+  display: inline;
+  padding: 10px;
+  color: #1c2128;
+  border: none;
+  font-weight: bolder;
+  text-transform: lowercase;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.lb {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.rb {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.nb {
+  border-radius: 0;
+}
+
+.cancel {
+  margin-left: 4%;
+}
+
+::placeholder {
+    color: #ffffff;
+    opacity: .7;
+}
+
+nav {
+  float: right;
+  border-bottom: 1px solid #cfd0d266;
+  padding-bottom: 10px;
+  margin-top: 10px;
+}
+
+nav li {
+  margin: 10px 5px;
+  display: inline;
+}
+
+nav li a {
+  padding: 10px;
+  width: 40%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background-color: #cfd0d266;
+}
+
+nav li a:hover, .pagi a:hover {
+  background-color: #1c2128;
+  -webkit-transition: background-color 1000ms linear;
+  -ms-transition: background-color 1000ms linear;
+  transition: background-color 1000ms linear;
+}
+
+.pagi {
+  float: right;
+  margin-top: 20px;
+}
+
+.current, .booking, .bookingspan {
+  background-color: #ffffffcc;
+}
+
+.error, .success, .warn {
+  border-radius: 5px;
+  border-left: 3px solid;
+}
+
+.booking, .bookingspan {
+  color: #0e0805;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+#content {
+	padding: 0;
+}
+
+#guests li:first-child {
+	padding-top: 0;
+}
+
+#guests li {
+	padding: 10px;
+}
+
+.list {
+  margin: 5px;
+  display: inline-block;
+  text-align: center;
+  width: 12%;
+}
+
+.list span {
+	display: inline-flex;
+}
+
+.none {
+	display: none;
+}
+
+.list img {
+	width: 60%;
+	margin: auto;
+	display: block;
+}
+
+.check {
+	display: none;
+}
+
+.label {
+    cursor: pointer;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    display: block;
+    background: #eee;
+    border:1px solid #ddd;
+}
+
+.label:after {
+    opacity: 0.2;
+    content: '';
+    position: absolute;
+    width: 9px;
+    height: 5px;
+    background: transparent;
+    top: 4px;
+    left: 5px;
+    border: 3px solid #333;
+    border-top: none;
+    border-right: none;
+    transform: rotate(-45deg);
+}
+
+#menu a {
+  background-color: #1c2128;
+  display: inline;
+  padding: 10px;
+  color: #fbfbfb;
+  border: 1px solid #cfd0d266;
+  text-transform: lowercase;
+  display: inline-block;
+}
+
+#menu a:hover {
+  background-color: #cfd0d266;
+}
+
+#menu input {
+}
+
+/**
+ * Create the hover event of the tick
+ */
+.label:hover::after {
+    opacity: 0.5;
+}
+
+/**
+ * Create the checkbox state for the tick
+ */
+.list input[type=checkbox]:checked + .label:after, #guests input[type=checkbox]:checked + .label:after {
+    opacity: 1;
+}
+
+#guests .label {
+	display: inline;
+	margin-left: 10px;
+}
+
+.file:hover, .list input[type=checkbox]:checked + label + div {
+  background-color: #ffffff19;
+}
+
+.success, .error, .warn, .errora {
+  padding: 10px;
+}
+
+.success {
+  background-color: #00ff0066;
+  border-color: #00ff00cc;
+}
+
+.error {
+  background-color: #ff000066;
+  border-color: #ff0000cc;
+}
+
+.errora {
+	display: block;
+  background-color: #ff000066;
+margin-bottom: 10px;
+}
+
+.errora:hover {
+  background-color: #ff0000cc;
+  -webkit-transition: background-color 1000ms linear;
+  -ms-transition: background-color 1000ms linear;
+  transition: background-color 1000ms linear;
+}
+
+.warn {
+  background-color: #f4a46066;
+  border-color: #f4a460cc;
+}
+
+.file {
+  word-break:  break-all;
+  padding: 10px;
+}
+
+.list input[type="checkbox"] {
+	vertical-align: bottom
+}
+
+.delete {
+	vertical-align: bottom;
+  background-image: url("edit.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 10px;
+  background-size: 12px;
+  background-color: #ffffff19;
+}
+
+.delete:hover {
+  background-color: #ff000099;
+  -webkit-transition: background-color 1000ms linear;
+  -ms-transition: background-color 1000ms linear;
+  transition: background-color 1000ms linear;
+}
+
+.log_out {
+  width: 80%;
+  position: relative;
+  float: right;
+  text-decoration: none;
+  color:#fff;
+  margin: 0 10px;
+  border: 1px solid #fff;
+  padding: 5px 10px;
+  display: inline;
+}
+
+.p_class {
+  margin: 1.6em 20px;
+  display:list-item;
+}
+
+#cwd {
+	margin-top: 10px;
+	margin-left: 25px;
+}
+
+#cwd a:hover {
+	border-bottom: 1px solid #fbfbfb;
+}
+
+#cwd strong {
+	padding: 0 5px;
+}
+
+
+

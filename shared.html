@@ -1,0 +1,35 @@
+{% extends 'template.html' %}
+{% block main %}
+
+    {% if user %}
+
+   		<h2 id="welcome">Hello {{ user.email() }}!</h2>
+	   
+			{% if shared_folders|length == 0 %}
+			  <p class="error">You have no shared folders available</p>
+			{% endif %}			
+
+      <p><b>Available shared folder(s):</b> {{shared_folders|length}}</p>
+      
+			<ul id="content">
+				
+		       	{% for dir in shared_folders %}
+		       	
+			        <li class="list">
+			        	<div class="file">
+			        		<a href="/shared/{{ dir.key.id() }}" title="go into folder">
+			        		<img alt="" src="/css/folder.png">
+			          		<span>{{ dir.name }}</span>
+			          		</a>
+			          	</div>
+			        </li>
+			        
+				{% endfor %}
+      
+			</ul>
+
+    {% endif %}
+
+
+{% endblock %}
+

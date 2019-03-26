@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>fileguard</title>
+    <link rel="stylesheet" href="/css/style.css" type="text/css" />
+  </head>
+  <body>
+
+    <header>
+
+      <a title="home" href="/"><h1>fileguard.ie</h1></a>
+
+      <nav>
+        {% if user %}
+        	<li><a href='/dir/'>my folders</a></li>
+        	<li><a href='/shared/'>shared folders</a></li>
+        {% endif %}
+        <li><a href='{{ url }}'>{{ url_string }}</a></li>
+      </nav>
+
+    </header>
+
+    <section>
+
+  		<div id="left">
+	        {% block left %}
+	        {% endblock %}
+	    </div>
+  		<div id="main">
+	        {% block main %}
+	        {% endblock %}
+	    </div>
+	    
+    </section>
+
+    <footer>&copy 2018 fileguard. All Rights Reserved.<span style="text-align: right; float: right;">Emmanuel Sobande - 2955118</span></footer>
+
+  </body>
+</html>
